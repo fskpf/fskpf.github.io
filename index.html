@@ -190,6 +190,10 @@
     .checkbox * {
       cursor: pointer;
     }
+
+    label[for=opacity] {
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -221,7 +225,14 @@
         <option value="zigzag-line">zigzag-line (slow)</option>
       </select>
       <div class="separator"></div>
-
+      
+      <label for="output-format">Output Format</label>
+      <select id="output-format" style="margin: 2px 0;">
+        <option value="svg">SVG</option>
+        <option value="canvas">Canvas</option>
+      </select>
+      <div class="separator"></div>
+      
       <label for="roughness-input">Roughness</label>
       <input id="roughness-input" type="range" value="1" min="0" max="4" step="0.5">
       <div class="separator"></div>
@@ -261,8 +272,8 @@
           <option value="venn">venn.svg</option>
         </select>
         <label for="opacity">Compare: </label>
-        <input id="opacity" type="range" min="0" max="1" step="0.05" value="0" onchange="opacityChanged()">
-        <button id="download-btn">Download Sketch (PNG)</button>
+        <input id="opacity" type="range" min="0" max="1" step="0.05" value="0">
+        <button id="download-btn">Download Sketch</button>
       </div>
 
       <div class="separator" style="margin: 0;"></div>
@@ -277,15 +288,8 @@
     </div>
   </div>
 
-  <script>
-    function opacityChanged() {
-      var value = document.getElementById('opacity').value
-      document.getElementById('input').style.opacity = value
-    }
-  </script>
-
   <!-- the bundle in injected by the build -->
 
-<script type="text/javascript" src="svg2roughjs.a6a0b7876c36c225a34c.js"></script><script type="text/javascript" src="vendors.edc925cbc2e170db77b9.js"></script><script type="text/javascript" src="main.f090233f6ef4c0b7093b.js"></script></body>
+<script type="text/javascript" src="svg2roughjs.2276d6ecd7c7498094f4.js"></script><script type="text/javascript" src="vendors.4e038ee3f1422db0d602.js"></script><script type="text/javascript" src="main.fd405f1114d0172b7238.js"></script></body>
 
 </html>
