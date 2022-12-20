@@ -99,14 +99,14 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
     "url": "montserrat/montserrat.css",
     "revision": "e0db66cfcd709a3451a179ce1c9cfb4a"
   }, {
-    "url": "android-chrome-192x192.png",
+    "url": "./android-chrome-192x192.png",
     "revision": "26fa90d90d5a50199ca9bd525e5b2a2e"
   }, {
-    "url": "android-chrome-512x512.png",
+    "url": "./android-chrome-512x512.png",
     "revision": "9c8f62cd3a227602501f92ef94bd895f"
   }, {
     "url": "manifest.webmanifest",
-    "revision": "a7c7ff1c692c3344e96a6a5f7431af3c"
+    "revision": "c0732159643074b39f9f01351a3c719b"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html")));
