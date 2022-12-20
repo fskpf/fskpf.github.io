@@ -81,10 +81,10 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
    * See https://goo.gl/S9QRab
    */
   workbox.precacheAndRoute([{
-    "url": "assets/index.35b815c0.css",
+    "url": "assets/index.2b5b4a68.js",
     "revision": null
   }, {
-    "url": "assets/index.eba2bed5.js",
+    "url": "assets/index.35b815c0.css",
     "revision": null
   }, {
     "url": "assets/webfontloader.b777d690.js",
@@ -94,7 +94,7 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
     "revision": null
   }, {
     "url": "index.html",
-    "revision": "3b3208b7fda6527bfa3093dd8bc3a1a7"
+    "revision": "a76b547866b2a1d0fcc358f9e076352f"
   }, {
     "url": "montserrat/montserrat.css",
     "revision": "e0db66cfcd709a3451a179ce1c9cfb4a"
@@ -106,7 +106,7 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
     "revision": "9c8f62cd3a227602501f92ef94bd895f"
   }, {
     "url": "manifest.webmanifest",
-    "revision": "c0732159643074b39f9f01351a3c719b"
+    "revision": "42195b9a145604b8121bf597a7d00fe5"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html")));
