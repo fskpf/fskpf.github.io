@@ -81,10 +81,10 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
    * See https://goo.gl/S9QRab
    */
   workbox.precacheAndRoute([{
-    "url": "assets/index.07ea9f13.css",
+    "url": "assets/index.36bfcaa7.css",
     "revision": null
   }, {
-    "url": "assets/index.6d5d89b7.js",
+    "url": "assets/index.993f8801.js",
     "revision": null
   }, {
     "url": "assets/webfontloader.b777d690.js",
@@ -94,7 +94,7 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
     "revision": null
   }, {
     "url": "index.html",
-    "revision": "5ec99537ce6807e87ceabb184dae5d73"
+    "revision": "7f540c294cd251ed4fa0e15d625cea82"
   }, {
     "url": "montserrat/montserrat.css",
     "revision": "e0db66cfcd709a3451a179ce1c9cfb4a"
