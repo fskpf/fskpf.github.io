@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books</title>
+
+  <style>
+    body,
+    html {
+      overflow: hidden;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .grid-root {
+      width: 100%;
+      max-width: 900px;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px minmax(0, 1fr) 50px;
+      grid-template-areas:
+        "search"
+        "results"
+        "pagination";
+    }
+
+    .search {
+      grid-area: search;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    .results {
+      grid-area: results;
+      overflow: auto;
+    }
+
+    .pagination {
+      grid-area: pagination;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #current-page-indicator {
+      margin: 0 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid-root">
+    <div class="search">
+      <input id="search" type="text" placeholder="Suche nach Bücher...">
+    </div>
+    <div class="results">
+      <ul>
+        <li>Keine Ergebnisse</li>
+      </ul>
+    </div>
+    <div class="pagination">
+      <button id="previous-page">
+        &lt; Zurück
+      </button>
+      <div id="current-page-indicator">Seite 1</div>
+      <button id="next-page">Weiter &gt;</button>
+    </div>
+  </div>
+
+  <script src="./main.js" type="module"></script>
+</body>
+
+</html>
