@@ -1,6 +1,6 @@
 import {books} from './books.js'
 
-const PAGE_SIZE = 30
+const PAGE_SIZE = 20
 let currentPage = 0
 
 const bookList = document.querySelector('.results > ul')
@@ -19,10 +19,22 @@ function debouncedSearch(query) {
   }, 200)
 }
 
+function getName(entry) {
+  return entry[0]
+}
+
+function getDirectory(entry) {
+  return entry[1]
+}
+
 let currentResults = []
 function searchBook(query) {
   query = query.toLowerCase().trim()
-  currentResults = books.filter(name => {
+  currentResults = books.filter(entry => {
+    const name = getName(entry)
+    if (name.length === 0) {
+      return false
+    }
     const normalizedName = name.toLowerCase()
     return normalizedName.indexOf(query) !== -1
   })
@@ -30,7 +42,11 @@ function searchBook(query) {
   // if there were no results, search for the single tokens
   if (currentResults.length === 0) {
     const splittedQuery = query.split(' ').map(str => str.trim())
-    currentResults = books.filter(name => {
+    currentResults = books.filter(entry => {
+      const name = getName(entry)
+      if (name.length === 0) {
+        return false
+      }
       const normalizedName = name.toLowerCase()
       return containsToken(normalizedName, splittedQuery)
     })
@@ -86,8 +102,11 @@ function displayResults(startIdx, endIdx) {
     if (!result) {
       break
     }
+    const name = getName(result)
+    const directory = getDirectory(result)
     const li = document.createElement('li')
-    li.innerText = result
+    li.innerText = name
+    li.title = directory
     bookList.appendChild(li)
   }
 }
