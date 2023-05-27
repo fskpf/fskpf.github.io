@@ -27,29 +27,48 @@ function getDirectory(entry) {
   return entry[1]
 }
 
+let currentResultsObj = {}
 let currentResults = []
 function searchBook(query) {
   query = query.toLowerCase().trim()
-  currentResults = books.filter(entry => {
-    const name = getName(entry)
-    if (name.length === 0) {
-      return false
+
+  currentResults = []
+  currentResultsObj = {}
+  for (const book of books) {
+    const name = getName(book)
+    const directory = getDirectory(book)
+    if (name.length > 0) {
+      const normalizedName = name.toLowerCase()
+      if (normalizedName.indexOf(query) !== -1) {
+        if (!currentResultsObj[normalizedName]) {
+          currentResultsObj[normalizedName] = [directory]
+          currentResults.push(book)
+        } else {
+          currentResultsObj[normalizedName].push(directory)
+        }
+      }
     }
-    const normalizedName = name.toLowerCase()
-    return normalizedName.indexOf(query) !== -1
-  })
+  }
   
   // if there were no results, search for the single tokens
   if (currentResults.length === 0) {
     const splittedQuery = query.split(' ').map(str => str.trim())
-    currentResults = books.filter(entry => {
-      const name = getName(entry)
-      if (name.length === 0) {
-        return false
+
+    for (const book of books) {
+      const name = getName(book)
+      const directory = getDirectory(book)
+      if (name.length > 0) {
+        const normalizedName = name.toLowerCase()
+        if (containsToken(normalizedName, splittedQuery)) {
+          if (!currentResultsObj[normalizedName]) {
+            currentResultsObj[normalizedName] = [directory]
+            currentResults.push(book)
+          } else {
+            currentResultsObj[normalizedName].push(directory)
+          }
+        }
       }
-      const normalizedName = name.toLowerCase()
-      return containsToken(normalizedName, splittedQuery)
-    })
+    }
   }
 
   setResultPage(0)
@@ -103,10 +122,29 @@ function displayResults(startIdx, endIdx) {
       break
     }
     const name = getName(result)
-    const directory = getDirectory(result)
+    const normalizedName = name.toLowerCase()
+    const resultDirectories = currentResultsObj[normalizedName] ?? [getDirectory(result)]
+    
     const li = document.createElement('li')
-    li.innerText = name
-    li.title = directory
+    li.title = resultDirectories.join('\n')
+    li.innerHTML = `<span>${name}</span>`
+    
+    resultDirectories.forEach((dir, idx) => {
+      const dirElement = document.createElement('span')
+      dirElement.innerText = `[${idx + 1}]`
+      dirElement.title = dir
+      dirElement.className = 'directory-link'
+      dirElement.onclick = () => {
+        navigator.clipboard.writeText(dir)
+        const copyHint = document.querySelector('.copy-hint')
+        copyHint.style.display = 'block'
+        setTimeout(() => {
+            copyHint.style.display = 'none'
+        }, 2000)
+      }
+      li.appendChild(dirElement)
+    });
+
     bookList.appendChild(li)
   }
 }
